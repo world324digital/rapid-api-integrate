@@ -1,7 +1,13 @@
 console.log('our app code goes here');
+
+
+
 $("#search").click(function(e){
 	e.preventDefault();
 	$('#display').empty();
+	var searchValue = $("#searchbox").val();
+	var searchValue1 = JSON.stringify(searchValue);
+	console.log(searchValue1);
 fetch("https://restcountries-v1.p.rapidapi.com/name/" + searchValue ,{
 	"method": "GET",
 	"headers": {
@@ -10,7 +16,11 @@ fetch("https://restcountries-v1.p.rapidapi.com/name/" + searchValue ,{
 	}
 })
 .then(function(response) {
+   // console.log (response)
+   return response.json();
  })
  .then(function(data) {
+   console.log(data)
+     displayJSON(data)
  })
 });
